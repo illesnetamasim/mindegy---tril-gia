@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Álom kísérte léptek – Digitális könyv</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="book-container">
+    <div id="page-frame">
+      <img id="page-image" src="index.png" alt="regény borító">
+    </div>
+    <div class="navigation">
+      <button onclick="prevPage()">&laquo; Előző</button>
+      <span id="page-number">0 / 38</span>
+      <button onclick="nextPage()">Következő &raquo;</button>
+    </div>
+  </div>
+
+  <script>
+    let currentPage = 0;
+    const totalPages = 38;
+
+    function updatePage() {
+      const image = document.getElementById("page-image");
+      if (currentPage === 0) {
+        image.src = "index.png";
+        image.alt = "regény borító";
+      } else {
+        image.src = `regeny${currentPage}.png`;
+        image.alt = `regény oldal ${currentPage}`;
+      }
+      document.getElementById("page-number").textContent = `${currentPage} / ${totalPages}`;
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        updatePage();
+      }
+    }
+
+    function nextPage() {
+      if (currentPage < totalPages) {
+        currentPage++;
+        updatePage();
+      }
+    }
+  </script>
+</body>
+</html>
